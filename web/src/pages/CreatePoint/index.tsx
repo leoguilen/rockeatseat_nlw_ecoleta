@@ -62,6 +62,14 @@ const CreatePoint = () => {
                         <span>Selecione o endereço no mapa</span>
                     </legend>
 
+                    <Map center={[-23.1078633, -46.545161]} zoom={15}>
+                        <TileLayer
+                            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        <Marker position={[-23.1078633, -46.545161]} />
+                    </Map>
+
                     <div className="field-group">
                         <div className="field">
                             <label htmlFor="uf">Estado (UF)</label>
