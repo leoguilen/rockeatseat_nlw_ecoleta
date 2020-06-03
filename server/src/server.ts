@@ -2,7 +2,9 @@ import express from 'express';
 
 const app = express();
 
-app.get('/users', (request, response) => {
+app.use(express.json())
+
+app.get('/', (request, response) => {
     response.json({user: "Leonardo"});
 });
 
