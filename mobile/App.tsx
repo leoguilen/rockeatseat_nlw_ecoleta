@@ -1,10 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from 'react-native';
 
 import Home from './src/pages/Home/index'
 
 export default function App() {
   return (
-    <Home />
+    <>
+      {/* Componente que muda o estilo da barra de status */}
+      <StatusBar barStyle='dark-content' backgroundColor='transparent' translucent />    
+      <Home />
+    </>
   );
 }
