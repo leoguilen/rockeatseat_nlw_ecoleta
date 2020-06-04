@@ -1,7 +1,17 @@
-# File created using '.gitignore Generator' for Visual Studio Code: https://bit.ly/vscode-gig
+mobile/node_modules/**/*
+mobile/.expo/*
+mobile/npm-debug.*
+mobile/*.jks
+mobile/*.p8
+mobile/*.p12
+mobile/*.key
+mobile/*.mobileprovision
+mobile/*.orig.*
+mobile/web-build/
+mobile/web-report/
 
-# Created by https://www.gitignore.io/api/windows,visualstudiocode
-# Edit at https://www.gitignore.io/?templates=windows,visualstudiocode
+# macOS
+mobile/.DS_Store
 
 ### VisualStudioCode ###
 .vscode/*
