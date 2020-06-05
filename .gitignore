@@ -80,3 +80,6 @@ server/uploads/*.jpeg
 
 # exception to the rule
 server/!uploads/.gitkeep 
+
+# sqlite db
+server/src/database/*.sqlite
