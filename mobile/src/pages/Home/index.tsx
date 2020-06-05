@@ -37,6 +37,9 @@ const Home = () => {
                 style={styles.input}
                 placeholder='Digite a UF'
                 value={uf}
+                maxLength={2}
+                autoCapitalize='characters'
+                autoCorrect={false}
                 onChangeText={setUf}
               />
               
@@ -44,6 +47,7 @@ const Home = () => {
                 style={styles.input}
                 placeholder='Digite a Cidade'
                 value={city}
+                autoCorrect={false}
                 onChangeText={setCity}
               />
 

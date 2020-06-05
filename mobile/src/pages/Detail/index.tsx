@@ -37,7 +37,6 @@ const Detail = () => {
         setData(res.data);
       });
 
-      console.log(data);
     }, []);
 
     function handleNavigateBack() {
