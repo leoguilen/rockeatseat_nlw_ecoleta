@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run knex:migrate && npm run knex:seed && node dist/src/server.js",
     "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
-    "build": "tsc && mkdirp dist/uploads/ && npm run cpImages",
+    "compile": "tsc && mkdirp dist/uploads/ && npm run cpImages",
     "cpImages": "@powershell -Command Copy-Item 'uploads/*.svg' -Destination 'dist/uploads/'",
     "knex:seed": "knex --knexfile dist/knexfile.js seed:run",
     "knex:migrate": "knex --knexfile dist/knexfile.js migrate:latest",
