@@ -64,7 +64,7 @@ const CreatePoint = () => {
 
     // Retorna todos as uf do brasil
     useEffect(() => {
-        axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(res => {
+        axios.get<IBGEUFResponse[]>('https://ibgefunctions.netlify.app/.netlify/functions/estados').then(res => {
             const ufInitials = res.data.map(uf => uf.sigla);
             setUfs(ufInitials);
         });
@@ -75,7 +75,7 @@ const CreatePoint = () => {
     useEffect(() => {
         if(selectedUf === '0') return;
 
-        axios.get<IBGECityResponse[]>(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios`).then(res => {
+        axios.get<IBGECityResponse[]>(`https://ibgefunctions.netlify.app/.netlify/functions/cidades?uf=${selectedUf}`).then(res => {
             const cityNames = res.data.map(city => city.nome);
             setCities(cityNames);
         });
