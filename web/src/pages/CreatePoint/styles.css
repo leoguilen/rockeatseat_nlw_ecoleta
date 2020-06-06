@@ -201,3 +201,20 @@
     background: #E1FAEC;
     border: 2px solid #34CB79;
   }
+
+  /* Mobile Layout */ 
+  @media (max-width: 400px) {
+    
+    #page-create-point {
+      width: fit-content;
+    }
+    
+    #page-create-point header {
+      margin-top: 40px;
+      margin-bottom: -40px;
+    
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+  }
