@@ -4,9 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npm run knex:migrate && npm run knex:seed && node dist/src/server.js",
     "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
-    "knex:seed": "knex --knexfile knexfile.ts seed:run",
-    "knex:migrate": "knex --knexfile knexfile.ts migrate:latest"
+    "compile": "tsc && mkdirp dist/uploads/ && npm run cpImages",
+    "cpImages": "@powershell -Command Copy-Item 'uploads/*.svg' -Destination 'dist/uploads/'",
+    "knex:seed": "knex --knexfile dist/knexfile.js seed:run",
+    "knex:migrate": "knex --knexfile dist/knexfile.js migrate:latest",
+    "knex:seed-dev": "knex --knexfile knexfile.ts seed:run",
+    "knex:migrate-dev": "knex --knexfile knexfile.ts migrate:latest"
   },
   "keywords": [],
   "author": "",
