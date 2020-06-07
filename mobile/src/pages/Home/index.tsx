@@ -1,67 +1,67 @@
 import React, { useState } from 'react';
 import { Feather as Icon} from '@expo/vector-icons';
-import { View, ImageBackground, Image, StyleSheet, Text, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, ImageBackground, Image, StyleSheet, Text, TextInput, KeyboardAvoidingView, Platform, Alert } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
+import Picker from "../../components/Dropdown/index";
+
+interface Location {
+  uf: string;
+  city: string;
+}
+
 const Home = () => {
-    const [uf, setUf] = useState('');
-    const [city, setCity] = useState('');
+    const [selectedLocation, setSelectedLocation] = useState<Location>({ uf: '', city: '' });
 
     const navigation = useNavigation();
 
     function handleNavigateToPoints() {
-        navigation.navigate('Points', {
+      const { uf, city } = selectedLocation;  
+      
+      if(city === '' || city === undefined) 
+        return Alert.alert('Opsssss...','Uma cidade precisa ser selecionada para prosseguir');
+
+      navigation.navigate("Points", {
           uf,
-          city
-        });
+          city,
+      });
     }
-
+  
     return (
-      <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-        <ImageBackground 
-            source={require('../../assets/home-background.png')}
-            style={styles.container}
-            imageStyle={{ width: 274, height: 368 }}
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+      >
+        <ImageBackground
+          source={require("../../assets/home-background.png")}
+          style={styles.container}
+          imageStyle={{ width: 274, height: 368 }}
         >
-            <View style={styles.main}>
-                <Image source={require('../../assets/logo.png')} />
-                <View>
-                  <Text style={styles.title}>Seu marketplace de coleta de resíduos</Text>
-                  <Text style={styles.description}>Ajudamos pessoas a encontrem pontos de coleta de forma eficiente.</Text>
-                </View>
+          <View style={styles.main}>
+            <Image source={require("../../assets/logo.png")} />
+            <View>
+              <Text style={styles.title}>
+                Seu marketplace de coleta de resíduos
+              </Text>
+              <Text style={styles.description}>
+                Ajudamos pessoas a encontrem pontos de coleta de forma
+                eficiente.
+              </Text>
             </View>
+          </View>
 
-            <View style={styles.footer}>
-              <TextInput 
-                style={styles.input}
-                placeholder='Digite a UF'
-                value={uf}
-                maxLength={2}
-                autoCapitalize='characters'
-                autoCorrect={false}
-                onChangeText={setUf}
-              />
-              
-              <TextInput 
-                style={styles.input}
-                placeholder='Digite a Cidade'
-                value={city}
-                autoCorrect={false}
-                onChangeText={setCity}
-              />
-
-                <RectButton style={styles.button} onPress={handleNavigateToPoints}>
-                    <View style={styles.buttonIcon}>
-                        <Text>
-                            <Icon name='arrow-right' color='#fff' size={24}/>
-                        </Text>
-                    </View>
-                    <Text style={styles.buttonText}>
-                        Entrar
-                    </Text>
-                </RectButton>    
-            </View>
+          <View style={styles.footer}>
+            <Picker onSelectedLocation={setSelectedLocation}/>
+            <RectButton style={styles.button} onPress={handleNavigateToPoints}>
+              <View style={styles.buttonIcon}>
+                <Text>
+                  <Icon name="arrow-right" color="#fff" size={24} />
+                </Text>
+              </View>
+              <Text style={styles.buttonText}>Entrar</Text>
+            </RectButton>
+          </View>
         </ImageBackground>
       </KeyboardAvoidingView>
     );
